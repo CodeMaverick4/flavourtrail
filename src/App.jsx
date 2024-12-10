@@ -2,8 +2,9 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import HomePage from './component/landingPage';
-import RecipeDetailPage from './component/recipedetailpage';
+
 import ErrorPage from './component/errorPage';
+import RecipeDetailPage from './component/recipedetailpage';
 
 function App() {
 
