@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './component/landingPage';
 
 import ErrorPage from './component/errorPage';
-import RecipeDetailPage from './component/recipedetailpage';
+import RecipeDetailPage from './component/recipeDetail';
 
 function App() {
 
