@@ -10,7 +10,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className='px-12 bg-[#e5e1de]'>
+      <div className=' bg-[#fcf5eb]'>
       <Routes>      
         <Route path="/" element={<HomePage />} />
         <Route path="/recipe/:id" element={<RecipeDetailPage />} />       
