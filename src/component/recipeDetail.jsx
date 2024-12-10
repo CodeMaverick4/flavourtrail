@@ -13,8 +13,7 @@ export default function RecipeDetailPage() {
     const fetchRecipe = async () => {
       const cachedRecipe = localStorage.getItem(`recipe_${params.id}`);
       
-      if (cachedRecipe) {
-        console.log("from local")
+      if (cachedRecipe) {        
         setRecipe(JSON.parse(cachedRecipe));
         setLoading(false);
         return;
@@ -26,8 +25,7 @@ export default function RecipeDetailPage() {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        const data = await response.json();
-        console.log(data)
+        const data = await response.json();        
         localStorage.setItem(`recipe_${params.id}`,JSON.stringify(data))
         setRecipe(data);
       } catch (err) {
@@ -45,30 +43,31 @@ export default function RecipeDetailPage() {
 
   
   return (
-    <div className='flex flex-col gap-9 py-20'>
+    <div className='flex flex-col gap-9 px-5 sm:px-20 py-20'>
       <Link className="flex gap-1 items-center " to={'/'} ><MoveLeft/>Back</Link>
-      <div className='flex justify-between gap-6 '>
-        <div className='flex flex-col flex-wrap gap-7 w-[70%]'>
+      <div className='flex flex-col sm:flex-row  justify-between gap-6 '>
+        
+        <div className='flex flex-col flex-wrap gap-7 sm:w-[40%]'>
           <h1 className='text-xl font-semibold'>{recipe.title}</h1>
           <div className='text-sm' dangerouslySetInnerHTML={{ __html: recipe.summary }} />
           {/* <p>{recipe.summary}</p> */}
           <div className='flex justify-between items-center px-5'>
             <div className='flex flex-col items-center gap-2'>
-              <span>Prep Time</span>
-              <span>{recipe.readyInMinutes}</span>
+              <span className='font-semibold'>Prep Time</span>
+              <span>{recipe.readyInMinutes} minutes</span>
             </div>
             <div className='flex flex-col items-center gap-2'>
-              <span>Type</span>
+              <span className='font-semibold'>Type</span>
               {recipe.vegetarian ?               
-                <span>Veg</span>
+                <span >Veg</span>
               :
               <span>Non Veg</span>}
             </div>
           </div>
         </div>
 
-        <div>
-          <img src={recipe.image} alt="" className='w-96'/>        
+        <div className='flex justify-center items-center flex-grow'>
+          <img src={recipe.image} alt="" className='h-[70%]'/>        
         </div>       
       </div>
 {/* ingredients  */}

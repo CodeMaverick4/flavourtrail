@@ -14,8 +14,7 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState(''); // for search input 
 
   
-  const searchRecipe = () => {
-    console.log("called")
+  const searchRecipe = () => {    
     if (searchQuery.trim() === '') {
       setRecipes(allRecipes); // If no search query, show all recipes
     } else {
@@ -72,7 +71,6 @@ export default function HomePage() {
       const cachedRecipe = localStorage.getItem(`AllRecipes`);
       
       if (cachedRecipe) {
-        console.log("from local")
         setRecipes(JSON.parse(cachedRecipe));
         setAllRecipes(JSON.parse(cachedRecipe)) // maintaing the all recipes
         setLoading(false);
@@ -110,36 +108,36 @@ export default function HomePage() {
   
   return (
     <>
-    <div className='flex justify-between bg-orange-400'>
-    <div className='flex flex-col justify-center'>
-      <h1 className='text-3xl'>Cook with <span className='text-orange-500'>Love,</span>"</h1>
-      <h1 className='text-3xl'> Live with  <span className='text-orange-500'>Flavor.</span></h1>
-    </div>
-    <img src="landingpageimgage.jpg" alt="" className=' h-64'  />
+    <div className='px-5 sm:px-16 py-10 sm:py-20 flex justify-between bg-white'>
+      <div className='flex flex-col justify-center'>
+        <h1 className='text-3xl sm:text-6xl'>Cook with <span className='text-orange-500'>Love,</span>"</h1>
+        <h1 className='text-3xl sm:text-6xl'> Live with  <span className='text-orange-500'>Flavor.</span></h1>
+      </div>
+      <img src="landingPageImage1.jpg" alt="" className=' sm:h-96'  />
     
   </div>
 
-  <div className=''>
-    <h1 className='text-3xl text-center'>All Recipes</h1>
+  <div className='px-5 sm:px-16'>
+    <h1 className='text-5xl font-semibold text-center my-10'>All Recipes</h1>
     
-    <div className='flex gap-3 justify-between items-center my-5'>
+    <div className='flex flex-col sm:flex-row gap-8 justify-between items-center my-5'>
       
-      <div className='flex gap-3  items-center '>
-        <div className='flex items-center'>
-          <input onChange={(e)=> setSearchQuery(e.target.value)} value={searchQuery} className='outline-none bg-[#ffcb91] py-2 px-2' type="search" name="" id=""  placeholder='Enter Recepi Name'/>
-          <button onClick={searchRecipe} className='bg-[#ffcb91] py-2 px-2'><Search /></button>
+      <div className='flex  gap-3  items-center flex-grow '>
+        <div className='flex items-center w-full'>
+          <input onChange={(e)=> setSearchQuery(e.target.value)} value={searchQuery} className='outline-none bg-white py-4 px-2 w-full' type="search" name="" id=""  placeholder='Enter Recepi Name'/>
+          <button onClick={searchRecipe} className='bg-[#ffcb91] py-4 px-3'><Search size={28}/></button>
         </div>
         {searchQuery !== '' && <div onClick={clearSearch} className='cursor-pointer flex items-center bg-white p-2  rounded-3xl'>clear <X/></div>}
       </div>
 
       {/* {searchQuery === '' &&  */}
-      <div className='pr-20'>
+      <div className=''>
         <h1 className='text-2xl'>Total Recipes {recipes.length} </h1>
       </div>
 
     </div>
     
-    <div className='flex flex-wrap gap-4  items-center'>
+    <div className='flex flex-wrap justify-center sm:justify-between  items-center space-y-4'>
       {recipes.map((recepi,index)=>(
         <RecepiCard key={index} recipeId={recepi.id} imgAddress={recepi.image} recepiTitle={recepi.title}  prepTime={recepi.readyInMinutes} recepiType={recepi.vegetarian} dishType={recepi.vegetarian} />
       ))}  
